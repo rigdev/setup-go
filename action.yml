@@ -19,6 +19,10 @@ inputs:
     description: 'Used to specify the path to a dependency file - go.sum'
   architecture:
     description: 'Target architecture for Go to use. Examples: x86, x64. Will use system architecture by default.'
+  save-cache:
+    description: 'Save to cache in post step'
+    default: true
+    required: false
 outputs:
   go-version:
     description: 'The installed Go version. Useful when given a version range as input.'
@@ -28,4 +32,4 @@ runs:
   using: 'node20'
   main: 'dist/setup/index.js'
   post: 'dist/cache-save/index.js'
-  post-if: success()
+  post-if: "success() && github.event.inputs.save-cache"
