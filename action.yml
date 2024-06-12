@@ -32,4 +32,4 @@ runs:
   using: 'node20'
   main: 'dist/setup/index.js'
   post: 'dist/cache-save/index.js'
-  post-if: "success() && github.event.inputs.save-cache"
+  post-if: "github.event.inputs.save-cache"
